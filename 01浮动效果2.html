@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01浮动案例2</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #float-div {
+            width: 80px;
+            height: 80px;
+            left: 100px;
+            top: 200px;
+            position: absolute;
+            background-color: blue;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var oDiv = document.getElementById("float-div");
+            var speedx = 1;
+            var speedy = 2;
+
+            setInterval(function() {
+                var leftstart = oDiv.offsetLeft;
+                var topstart = oDiv.offsetTop;
+                var leftcurrent = leftstart + speedx;
+                var topcurrent = topstart + speedy;
+                var winwidth = document.documentElement.clientWidth || document.body.clientWidth;
+                var winheight = document.documentElement.clientHeight || document.body.clientHeight;
+                var maxwidth = winwidth - oDiv.offsetWidth;
+                var maxHeight = winheight - oDiv.offsetHeight;
+
+                oDiv.style.top = topstart + speedy + "px";
+                oDiv.style.left = leftstart + speedx + "px";
+
+                if(topcurrent >= maxHeight ||topcurrent <= 0) {
+                    speedy =  -speedy;
+                }
+                if(leftcurrent >= maxwidth || leftcurrent <= 0) {
+                    speedx = -speedx;
+                }
+
+            },50);
+
+
+        }
+    </script>
+</head>
+<body>
+<div id="float-div"></div>
+</body>
+</html>
