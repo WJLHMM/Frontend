@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01皮肤按钮切换6</title>
+	<style>
+
+		* {
+			padding:0;
+			margin: 0 auto;
+		}
+		#div1 {
+			width: 295px;
+			height: 463px;
+			margin-top:20px;
+			border: 1px solid #bebebe;
+			background-color: #fff;
+		}
+		div {
+			margin:0 auto;
+			display:table;
+		}
+		#div2 {
+			margin-top:86px;
+			position:relative;
+		}
+		#div3 {
+			position:relative;
+		}
+		#div3,#div4,#div5 {
+			margin-top:21px;
+		}
+		#div2 > span {
+			display: inline-block;
+			position:absolute;
+			top:11px;
+			left:165px;
+			color: #bdbdbd;
+		}
+		#inp1,#inp2 {
+			width: 245px;
+			height: 41px;
+			cursor: pointer;
+			text-align: left;
+			text-indent:25px;  //输入框光标开始位置
+			font: 14px "微软雅黑";
+		}
+		#div2 label {
+			position:absolute;
+			display:block;
+			color:#666666;
+			top:14px;
+			left:26px;
+			font-size:14px;
+
+		}
+		#div2 p {
+			/*background-color: #ff3b4f;*/
+			width: 20px;
+			height: 18px;
+			position:absolute;
+			top:16px;
+			left:5px;
+			background:url(01.png) no-repeat -151px -64px;
+		}
+		#div2 i {
+			width: 72px;
+			height: 18px;
+			position:absolute;
+			top:15px;
+			left:175px;
+			background:url(01.png) no-repeat -7px -120px;
+		}
+		#div3 p {
+			width: 20px;
+			height: 16px;
+			top:16px;
+			left:5px;
+			position:absolute;
+			background:url(01.png) no-repeat -173px -65px;;
+		}
+		#div3 label {
+			position:absolute;
+			display:block;
+			color:#666666;
+			top:14px;
+			left:26px;
+			font-size:14px;
+		}
+		#div31 {
+			color:red;
+			font-size:14px;
+			display:none;
+			position:absolute;
+		}
+		#div4 {
+			display:inline-block;
+			font:9px "微软雅黑";
+			position:relative;
+			color:#bdbdbd;
+		 }
+		#inp3 {
+			vertical-align: middle;
+		}
+
+		#div5 > button {
+			float:left;
+			display:block;
+			color: #0c0c0c;
+			font:15px "微软雅黑";
+			border: 1px solid #0c0c0c;
+		}
+
+		#sp1 {
+			/*float:left;*/
+			width: 12px;
+			height: 12px;
+			margin-left:38px;
+		}
+
+		a,a:visited {
+			color:silver;
+			margin-left:88px;
+			text-decoration: none;
+		}
+		#div5 .but1 {
+			width: 109px;
+			height: 38px;
+			margin-left:25px;
+
+			background-color: #3947ff;
+		}
+		.but2 {
+			width: 109px;
+			height: 38px;
+			margin-left:25px;
+			margin-right:25px;
+		}
+		#tips {
+			width: 200px;
+			height: 50px;
+			display:none;
+			border: 1px solid #000;
+			background: #ccb718;
+			margin-left:38px;
+			color: #1f10ff;
+			position:absolute;
+		}
+	</style>
+	<script>
+        window.onload = function() {
+            var oSpan = document.getElementById("sp1");
+            var oLeb = document.getElementById("lb1");
+            var oDiv = document.getElementById("tips");
+            var oinp = document.getElementById("inp3");
+            var oinp1 = document.getElementById("inp1");
+            var oinp2 = document.getElementById("inp2");
+            var leb1 = document.getElementById("div2").getElementsByTagName("label")[0];
+            var leb2 = document.getElementById("div3").getElementsByTagName("label")[0];
+            var oDiv31 = document.getElementById("div31");
+
+            oinp1.oninput =function() {
+                if(this.value!=="") {
+                    leb1.style.display = "none";
+				}else {
+                    leb1.style.display = "block";
+				}
+			}
+
+            oinp2.onfocus =function() {
+                leb2.style.display = "none";
+                oDiv31.style.display ="none";
+            }
+            oinp2.onblur =function() {
+                if(oinp2.value=="") {
+                    leb2.style.display = "block";
+                }else {
+                    if(oinp2.value.length<6 || oinp2.value.length>12) {
+                        oDiv31.style.display ="block";
+					}
+				}
+            }
+
+            oSpan.onmouseover = function() {
+                oDiv.style.display = "block"
+            }
+            oSpan.onmouseout = function() {
+                oDiv.style.display = "none";
+            }
+            oLeb.onclick = function() {
+                if(oinp.checked) {
+                    oinp.checked = false;
+                }
+                else {
+                    oinp.checked = true;
+                }
+            }
+
+        }
+	</script>
+</head>
+<body>
+<div id="div1">
+	<div id="div2">
+		<p></p>
+		<label for="inp1">邮箱账号或手机号</label><input id ="inp1" type="email" maxlength="40" autofocus>
+		<i></i>
+	</div>
+	<div id="div3">
+		<p></p>
+		<label for="inp2">密码</label><input id ="inp2" type="password">
+		<div id="div31">请输入的密码位数在6~12位之间</div>
+	</div>
+	<div id = "div4">
+		<span id = "sp1" >
+			<input id ="inp3" type="checkbox">
+			<label id ="lb1">十天内免登陆</label>
+		</span>
+		<div id="tips">为了您的信息安全，请不要在网吧或者公共场所使用该功能！</div>
+		<a href="#" class ="s2">忘记密码？</a>
+	</div>
+	<div  id="div5">
+		<button class ="but1">登&nbsp&nbsp&nbsp录</button>
+		<button class ="but2">去注册</button>
+	</div>
+</div>
+</body>
+</html>
+
